@@ -32,6 +32,17 @@ class ExpressionEngineHasher implements HasherContract{
     protected $bcrypt_hash_size = 60;
 
     /**
+     * Get information about the given hashed value.
+     *
+     * @param  string $hashedValue
+     * @return array
+     */
+    public function info($hashedValue)
+    {
+        return password_get_info($hashedValue);
+    }
+
+    /**
      * Hash the given value.
      *
      * @param  string $value
