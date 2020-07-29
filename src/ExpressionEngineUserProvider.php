@@ -1,6 +1,6 @@
 <?php
 
-namespace DrawMyAttention\ExpAuth;
+namespace TriadLtd\ExpAuth;
 
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Auth\EloquentUserProvider;

@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/drawmyattention/expauth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drawmyattention/expauth/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/drawmyattention/expauth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/drawmyattention/expauth/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/drawmyattention/expauth/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drawmyattention/expauth/?branch=master) [![Packagist](https://img.shields.io/packagist/dt/drawmyattention/expauth.svg)](https://packagist.org/packages/drawmyattention/expauth) [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/triad-ltd/expauth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/triad-ltd/expauth/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/triad-ltd/expauth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/triad-ltd/expauth/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/triad-ltd/expauth/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/triad-ltd/expauth/?branch=master) [![Packagist](https://img.shields.io/packagist/dt/triad-ltd/expauth.svg)](https://packagist.org/packages/triad-ltd/expauth) [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
 
 #Laravel 5 Expression Engine User Authentication
 
@@ -20,15 +20,15 @@ In your composer.json file, add:
 
 ```
     "require": {
-       "drawmyattention/expauth": "1.1.*"
+       "triad-ltd/expauth": "1.1.*"
     }
 ```
 
 Then, in config/app.php add
 
 ```
-    'DrawMyAttention\ExpAuth\ExpressionEngineUserServiceProvider',
-    'DrawMyAttention\ExpAuth\ExpressionEngineHasherServiceProvider',
+    'TriadLtd\ExpAuth\ExpressionEngineUserServiceProvider',
+    'TriadLtd\ExpAuth\ExpressionEngineHasherServiceProvider',
 ```
 
 and (optionally) comment out
@@ -60,7 +60,7 @@ and that's it!
 
 ## Usage
 
-Authentication works in exactly the same way as Laravel's regular auth methods. 
+Authentication works in exactly the same way as Laravel's regular auth methods.
 
 ## Licence and credit
 

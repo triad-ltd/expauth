@@ -1,6 +1,6 @@
 <?php
 
-namespace DrawMyAttention\ExpAuth;
+namespace TriadLtd\ExpAuth;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;

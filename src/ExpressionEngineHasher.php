@@ -1,6 +1,6 @@
 <?php
 
-namespace DrawMyAttention\ExpAuth;
+namespace TriadLtd\ExpAuth;
 
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Exception;

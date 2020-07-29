@@ -1,6 +1,6 @@
 <?php
 
-namespace DrawMyAttention\ExpAuth;
+namespace TriadLtd\ExpAuth;
 
 class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServiceProvider{
 
@@ -18,7 +18,7 @@ class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServ
      */
     public function register()
     {
-        $this->app->singleton('hash', function() { return new \DrawMyAttention\ExpAuth\ExpressionEngineHasher; });
+        $this->app->singleton('hash', function() { return new \TriadLtd\ExpAuth\ExpressionEngineHasher; });
     }
 
     /**
