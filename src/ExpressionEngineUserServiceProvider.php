@@ -3,16 +3,15 @@
 namespace TriadLtd\ExpAuth;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class ExpressionEngineUserServiceProvider extends ServiceProvider{
 
     public function boot()
     {
-        Auth::extend('ExpressionEngineAuth', function($app)
+        Auth::provider('ExpressionEngineAuth', function($app, array $config)
         {
-            $model = $this->app['config']['auth.model'];
-            return new ExpressionEngineUserProvider($this->app['hash'], $model);
+            return new ExpressionEngineUserProvider($app['hash'], $config['model']);
         });
     }
 
