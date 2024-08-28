@@ -1,23 +1,23 @@
 {
     "name": "triad-ltd/expauth",
-    "description": "A Laravel 5 authentication driver that supports Expression Engine's membership system.. New users will default to Laravel's bcrypt encryption (extremely secure), but existing users who have registered using Expression Engine can also be authenticated. Also handles their reset password procedure.",
+    "description": "A Laravel authentication driver that supports Expression Engine's membership system. New users will default to Laravel's bcrypt encryption (extremely secure), but existing users who have registered using Expression Engine can also be authenticated. Also handles their reset password procedure.",
     "homepage": "https://github.com/triad-ltd/expauth",
     "license": "MIT",
     "authors": [
         {
             "name": "Triad Ltd",
-            "email": "developers@triad.ukc.om",
-            "homepage": "https://triad.uk.com"
+            "email": "developers@triadcreative.co.uk",
+            "homepage": "https://triadcreative.co.uk"
         }
     ],
     "require": {
-        "php": ">=7.2.0",
-        "laravel/framework": "^6.0"
+        "php": ">=8.3.0",
+        "laravel/framework": "^11.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.7@dev"
+        "phpunit/phpunit": "^11.3.1"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "TriadLtd\\ExpAuth\\": "src"
@@ -26,6 +26,14 @@
     "autoload-dev": {
         "psr-4": {
             "TriadLtd\\ExpAuth\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TriadLtd\\ExpAuth\\ExpressionEngineUserServiceProvider",
+                "TriadLtd\\ExpAuth\\ExpressionEngineHasherServiceProvider"
+            ]
         }
     }
 }

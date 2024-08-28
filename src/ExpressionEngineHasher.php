@@ -5,14 +5,14 @@ namespace TriadLtd\ExpAuth;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Exception;
 
-class ExpressionEngineHasher implements HasherContract{
-
-    private $hash_algorithms = array(
-        128     => 'sha512',
-        64      => 'sha256',
-        40      => 'sha1',
-        32      => 'md5'
-    );
+class ExpressionEngineHasher implements HasherContract
+{
+    private $hash_algorithms = [
+        128 => 'sha512',
+        64 => 'sha256',
+        40 => 'sha1',
+        32 => 'md5'
+    ];
 
     /**
      * Default crypt cost factor.
@@ -50,35 +50,28 @@ class ExpressionEngineHasher implements HasherContract{
      * @return string
      * @throws Exception
      */
-    public function make($value, array $options = array())
+    public function make($value, array $options = [])
     {
         $this->guardAgainstMd5Collisions($value);
 
         // If no hash algorithm is explicitly specified, use bcrypt
-        if (!isset($options['byte_size']) || $options['byte_size'] === false)
-        {
+        if (!isset($options['byte_size']) || $options['byte_size'] === false) {
             return $this->hashUsingBcrypt($value, $options);
-        }
-        elseif ( ! isset($this->hash_algorithms[$options['byte_size']]))
-        {
+        } elseif (!isset($this->hash_algorithms[$options['byte_size']])) {
             // The algorithm that was provided wasn't found in the array of available algorithms
             throw new Exception('No matching hash algorithm.');
         }
 
         // No salt? (not even blank), we'll regenerate
-        if ($options['salt'] === false)
-        {
+        if ($options['salt'] === false) {
             $options['salt'] = $this->generateSalt($options['byte_size']);
-        }
-        elseif (strlen($options['salt']) !== $options['byte_size'])
-        {
+        } elseif (strlen($options['salt']) !== $options['byte_size']) {
             // A salt with an invalid length was provided. This can happen if
             // old code resets a new value, ignore it.
             $options['salt'] = '';
         }
 
-        return hash($this->hash_algorithms[$options['byte_size']], $options['salt'].$value);
-
+        return hash($this->hash_algorithms[$options['byte_size']], $options['salt'] . $value);
     }
 
     /**
@@ -93,8 +86,7 @@ class ExpressionEngineHasher implements HasherContract{
      */
     private function guardAgainstMd5Collisions($value)
     {
-        if (!$value || strlen($value) > 250)
-        {
+        if (!$value || strlen($value) > 250) {
             throw new Exception("Hash length exceeds operable length.");
         }
     }
@@ -110,8 +102,7 @@ class ExpressionEngineHasher implements HasherContract{
     public function generateSalt($byte_size = 128)
     {
         $salt = '';
-        for ($i = 0; $i < $byte_size; $i++)
-        {
+        for ($i = 0; $i < $byte_size; $i++) {
             $salt .= chr(mt_rand(33, 126));
         }
         return $salt;
@@ -127,12 +118,11 @@ class ExpressionEngineHasher implements HasherContract{
      */
     private function hashUsingBcrypt($value, $options)
     {
-        $cost = isset($options['rounds']) ? $options['rounds'] : $this->rounds;
+        $cost = $options['rounds'] ?? $this->rounds;
 
-        $hash = password_hash($value, PASSWORD_BCRYPT, array('cost' => $cost));
+        $hash = password_hash($value, PASSWORD_BCRYPT, ['cost' => $cost]);
 
-        if ($hash === false)
-        {
+        if ($hash === false) {
             throw new Exception("Bcrypt hashing not supported.");
         }
 
@@ -147,10 +137,10 @@ class ExpressionEngineHasher implements HasherContract{
      * @param  array $options
      * @return bool
      */
-    public function check($value, $hashedValue, array $options = array())
+    public function check($value, $hashedValue, array $options = [])
     {
         // If this is a default Laravel bcrypt hashed password,
-        if(strlen($hashedValue) == $this->bcrypt_hash_size) {
+        if (strlen($hashedValue) == $this->bcrypt_hash_size) {
             return password_verify($value, $hashedValue);
         }
 
@@ -161,9 +151,9 @@ class ExpressionEngineHasher implements HasherContract{
             //return false;
         }
         // hash the incoming password & test against the original hash
-        $hashed = $this->make($value, array('salt' => $options['salt'], 'byte_size' => $options['byte_size']));
+        $hashed = $this->make($value, ['salt' => $options['salt'], 'byte_size' => $options['byte_size']]);
 
-        return ($hashed !== FALSE AND $hashedValue == $hashed);
+        return $hashed !== false && $hashedValue == $hashed;
     }
 
     /**
@@ -173,11 +163,11 @@ class ExpressionEngineHasher implements HasherContract{
      * @param  array $options
      * @return bool
      */
-    public function needsRehash($hashedValue, array $options = array())
+    public function needsRehash($hashedValue, array $options = [])
     {
-        if(strlen($hashedValue) == $this->bcrypt_hash_size){
-            $cost = isset($options['rounds']) ? $options['rounds'] : $this->rounds;
-            return password_needs_rehash($hashedValue, PASSWORD_BCRYPT, array('cost' => $cost));
+        if (strlen($hashedValue) == $this->bcrypt_hash_size) {
+            $cost = $options['rounds'] ?? $this->rounds;
+            return password_needs_rehash($hashedValue, PASSWORD_BCRYPT, ['cost' => $cost]);
         }
 
         //This is an Expression Engine user, so we have the opportunity to switch their password to using BCrypt

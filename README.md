@@ -1,10 +1,10 @@
 [![Latest Stable Version](https://poser.pugx.org/triad-ltd/expauth/v)](//packagist.org/packages/triad-ltd/expauth) [![Total Downloads](https://poser.pugx.org/triad-ltd/expauth/downloads)](//packagist.org/packages/triad-ltd/expauth) [![Latest Unstable Version](https://poser.pugx.org/triad-ltd/expauth/v/unstable)](//packagist.org/packages/triad-ltd/expauth) [![License](https://poser.pugx.org/triad-ltd/expauth/license)](//packagist.org/packages/triad-ltd/expauth)
 
-#Laravel 5 Expression Engine User Authentication
+#Laravel Expression Engine User Authentication
 
 Allows you to switch your Expression Engine website to Laravel, by handling the authentication of Expression Engine members. This package allows you to easily build a front end in Laravel for Expression Engine websites, without worrying about how existing members logins and registrations will work.
 
-**For Laravel 5.2 support, please checkout the 5.2 branch.**
+**For Laravel 11 support, please use the 1.3.0 version.**
 
 ## What it does
 
@@ -20,21 +20,8 @@ In your composer.json file, add:
 
 ```
     "require": {
-       "triad-ltd/expauth": "1.1.*"
+       "triad-ltd/expauth": "^1.3.0"
     }
-```
-
-Then, in config/app.php add
-
-```
-    'TriadLtd\ExpAuth\ExpressionEngineUserServiceProvider',
-    'TriadLtd\ExpAuth\ExpressionEngineHasherServiceProvider',
-```
-
-and (optionally) comment out
-
-```
-    //'Illuminate\Hashing\HashServiceProvider',
 ```
 
 In config/auth.php, change
@@ -54,6 +41,21 @@ In your User model, make sure that you set the table and primary key fields as p
 ```
     protected $table = 'exp_members';
 	protected $primaryKey = 'member_id';
+```
+
+### LV 10 Structure only
+
+Then, in config/app.php add
+
+```
+    'TriadLtd\ExpAuth\ExpressionEngineUserServiceProvider',
+    'TriadLtd\ExpAuth\ExpressionEngineHasherServiceProvider',
+```
+
+and (optionally) comment out
+
+```
+    //'Illuminate\Hashing\HashServiceProvider',
 ```
 
 and that's it!

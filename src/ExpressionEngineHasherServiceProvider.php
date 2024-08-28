@@ -2,8 +2,8 @@
 
 namespace TriadLtd\ExpAuth;
 
-class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServiceProvider{
-
+class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -18,7 +18,9 @@ class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServ
      */
     public function register()
     {
-        $this->app->singleton('hash', function() { return new \TriadLtd\ExpAuth\ExpressionEngineHasher; });
+        $this->app->singleton('hash', function () {
+            return new \TriadLtd\ExpAuth\ExpressionEngineHasher;
+        });
     }
 
     /**
@@ -28,7 +30,6 @@ class ExpressionEngineHasherServiceProvider extends \Illuminate\Hashing\HashServ
      */
     public function provides()
     {
-        return array('hash');
+        return ['hash'];
     }
-
 }
