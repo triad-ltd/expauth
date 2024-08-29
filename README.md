@@ -21,7 +21,13 @@ In your composer.json file, add:
 ```
     "require": {
        "triad-ltd/expauth": "^1.3.0"
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:triad-ltd/expauth.git"
+        }
+    ]
 ```
 
 In config/auth.php, change
