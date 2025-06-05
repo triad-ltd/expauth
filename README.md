@@ -4,7 +4,7 @@
 
 Allows you to switch your Expression Engine website to Laravel, by handling the authentication of Expression Engine members. This package allows you to easily build a front end in Laravel for Expression Engine websites, without worrying about how existing members logins and registrations will work.
 
-**For Laravel 11 support, please use the 1.3.0 version.**
+**For Laravel 12 support, please use the 1.4.0 version.**
 
 ## What it does
 
@@ -20,7 +20,7 @@ In your composer.json file, add:
 
 ```
     "require": {
-       "triad-ltd/expauth": "^1.3.0"
+       "triad-ltd/expauth": "^1.4.0"
     },
     "repositories": [
         {
